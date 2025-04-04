@@ -1,214 +1,176 @@
 "use client";
 
-import { useState } from "react";
-import { Bell, Moon, Sun, Globe, Lock, User, CreditCard, HelpCircle } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Sidebar } from "@/components/layout/sidebar";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ModeToggle } from "@/components/mode-toggle";
-import { Navigation } from "@/components/layout/navigation";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-
-const currencies = [
-  { code: "USD", symbol: "$", name: "US Dollar" },
-  { code: "NGN", symbol: "₦", name: "Nigerian Naira" },
-  { code: "GBP", symbol: "£", name: "British Pound" },
-  { code: "EUR", symbol: "€", name: "Euro" },
-];
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
+import { Bell, Moon, Sun, Globe, Shield, User, Mail } from "lucide-react";
 
 export default function SettingsPage() {
-  const [notifications, setNotifications] = useState({
-    email: true,
-    push: false,
-    marketing: true,
-  });
-  const [defaultCurrency, setDefaultCurrency] = useState("USD");
-
-  const handleCurrencyChange = (value: string) => {
-    setDefaultCurrency(value);
-    // In a real application, you would save this to your backend
-    // and update the currency context/state
-  };
-
   return (
-    <div className="min-h-screen bg-background pb-16 lg:pb-0">
-      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container flex h-16 items-center">
-          <h1 className="text-xl font-bold">Settings</h1>
+    <div className="flex-1 flex flex-col">
+      <header className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
+        <div className="container mx-auto px-4">
+          <div className="h-16 flex items-center">
+            <h1 className="text-2xl font-semibold">Settings</h1>
+          </div>
         </div>
       </header>
 
-      <main className="container py-6 space-y-6">
-        <Card className="p-6">
-          <h2 className="text-lg font-semibold mb-4">Appearance</h2>
-          <div className="flex items-center justify-between">
-            <div className="space-y-1">
-              <p className="font-medium">Theme</p>
-              <p className="text-sm text-muted-foreground">
-                Select your preferred theme
-              </p>
-            </div>
-            <ModeToggle />
+      <main className="flex-1 pb-20 lg:pb-8">
+        <div className="container mx-auto px-4 py-8">
+          <div className="max-w-4xl mx-auto space-y-8">
+            {/* Notifications */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Bell className="h-5 w-5" />
+                  Notifications
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className="space-y-0.5">
+                    <Label>Email Notifications</Label>
+                    <p className="text-sm text-muted-foreground">
+                      Receive email updates about your account activity
+                    </p>
+                  </div>
+                  <Switch />
+                </div>
+                <div className="flex items-center justify-between">
+                  <div className="space-y-0.5">
+                    <Label>Push Notifications</Label>
+                    <p className="text-sm text-muted-foreground">
+                      Receive push notifications in your browser
+                    </p>
+                  </div>
+                  <Switch />
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Appearance */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Sun className="h-5 w-5" />
+                  Appearance
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className="space-y-0.5">
+                    <Label>Theme</Label>
+                    <p className="text-sm text-muted-foreground">
+                      Select your preferred theme
+                    </p>
+                  </div>
+                  <Select defaultValue="system">
+                    <SelectTrigger className="w-40">
+                      <SelectValue placeholder="Select theme" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="light">Light</SelectItem>
+                      <SelectItem value="dark">Dark</SelectItem>
+                      <SelectItem value="system">System</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Language */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Globe className="h-5 w-5" />
+                  Language
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className="space-y-0.5">
+                    <Label>Display Language</Label>
+                    <p className="text-sm text-muted-foreground">
+                      Select your preferred language
+                    </p>
+                  </div>
+                  <Select defaultValue="en">
+                    <SelectTrigger className="w-40">
+                      <SelectValue placeholder="Select language" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="en">English</SelectItem>
+                      <SelectItem value="fr">French</SelectItem>
+                      <SelectItem value="de">German</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Privacy */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Shield className="h-5 w-5" />
+                  Privacy
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className="space-y-0.5">
+                    <Label>Profile Visibility</Label>
+                    <p className="text-sm text-muted-foreground">
+                      Control who can see your profile
+                    </p>
+                  </div>
+                  <Select defaultValue="public">
+                    <SelectTrigger className="w-40">
+                      <SelectValue placeholder="Select visibility" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="public">Public</SelectItem>
+                      <SelectItem value="private">Private</SelectItem>
+                      <SelectItem value="friends">Friends Only</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Account */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <User className="h-5 w-5" />
+                  Account
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className="space-y-0.5">
+                    <Label>Email Address</Label>
+                    <p className="text-sm text-muted-foreground">
+                      Update your email address
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Mail className="h-4 w-4 text-muted-foreground" />
+                    <span>john@example.com</span>
+                  </div>
+                </div>
+                <Button variant="destructive" className="w-full">
+                  Delete Account
+                </Button>
+              </CardContent>
+            </Card>
           </div>
-        </Card>
-
-        <Card className="p-6">
-          <h2 className="text-lg font-semibold mb-4">Currency</h2>
-          <div className="space-y-4">
-            <div className="space-y-1">
-              <p className="font-medium">Default Currency</p>
-              <p className="text-sm text-muted-foreground">
-                Set your preferred currency for displaying prices
-              </p>
-            </div>
-            <Select value={defaultCurrency} onValueChange={handleCurrencyChange}>
-              <SelectTrigger className="w-full">
-                <SelectValue placeholder="Select currency" />
-              </SelectTrigger>
-              <SelectContent>
-                {currencies.map((currency) => (
-                  <SelectItem key={currency.code} value={currency.code}>
-                    {currency.symbol} {currency.name}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-        </Card>
-
-        <Card className="p-6">
-          <h2 className="text-lg font-semibold mb-4">Account</h2>
-          <div className="space-y-4">
-            <div className="space-y-1">
-              <p className="font-medium">Delete Account</p>
-              <p className="text-sm text-muted-foreground">
-                Permanently delete your account and all associated data
-              </p>
-            </div>
-            <Button variant="destructive">Delete Account</Button>
-          </div>
-        </Card>
-
-        <Card>
-          <CardHeader>
-            <CardTitle>Notifications</CardTitle>
-            <CardDescription>Configure how you receive notifications.</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-4">
-                <Bell className="h-5 w-5 text-muted-foreground" />
-                <div>
-                  <p className="font-medium">Email Notifications</p>
-                  <p className="text-sm text-muted-foreground">Receive notifications via email</p>
-                </div>
-              </div>
-              <Switch
-                checked={notifications.email}
-                onCheckedChange={(checked) =>
-                  setNotifications({ ...notifications, email: checked })
-                }
-              />
-            </div>
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-4">
-                <Bell className="h-5 w-5 text-muted-foreground" />
-                <div>
-                  <p className="font-medium">Push Notifications</p>
-                  <p className="text-sm text-muted-foreground">Receive push notifications</p>
-                </div>
-              </div>
-              <Switch
-                checked={notifications.push}
-                onCheckedChange={(checked) =>
-                  setNotifications({ ...notifications, push: checked })
-                }
-              />
-            </div>
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-4">
-                <Bell className="h-5 w-5 text-muted-foreground" />
-                <div>
-                  <p className="font-medium">Marketing Emails</p>
-                  <p className="text-sm text-muted-foreground">Receive marketing emails</p>
-                </div>
-              </div>
-              <Switch
-                checked={notifications.marketing}
-                onCheckedChange={(checked) =>
-                  setNotifications({ ...notifications, marketing: checked })
-                }
-              />
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader>
-            <CardTitle>Preferences</CardTitle>
-            <CardDescription>Customize your learning experience.</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-4">
-                <Globe className="h-5 w-5 text-muted-foreground" />
-                <div>
-                  <p className="font-medium">Language</p>
-                  <p className="text-sm text-muted-foreground">Select your preferred language</p>
-                </div>
-              </div>
-              <Button variant="outline">English</Button>
-            </div>
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-4">
-                <CreditCard className="h-5 w-5 text-muted-foreground" />
-                <div>
-                  <p className="font-medium">Payment Methods</p>
-                  <p className="text-sm text-muted-foreground">Manage your payment methods</p>
-                </div>
-              </div>
-              <Button variant="outline">Manage</Button>
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader>
-            <CardTitle>Support</CardTitle>
-            <CardDescription>Get help and contact support.</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-4">
-                <HelpCircle className="h-5 w-5 text-muted-foreground" />
-                <div>
-                  <p className="font-medium">Help Center</p>
-                  <p className="text-sm text-muted-foreground">Browse our help articles</p>
-                </div>
-              </div>
-              <Button variant="outline">Visit</Button>
-            </div>
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-4">
-                <HelpCircle className="h-5 w-5 text-muted-foreground" />
-                <div>
-                  <p className="font-medium">Contact Support</p>
-                  <p className="text-sm text-muted-foreground">Get in touch with our support team</p>
-                </div>
-              </div>
-              <Button variant="outline">Contact</Button>
-            </div>
-          </CardContent>
-        </Card>
+        </div>
       </main>
-
-      <Navigation />
     </div>
   );
 } 
