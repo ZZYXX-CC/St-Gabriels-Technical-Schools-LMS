@@ -90,7 +90,7 @@ const courseData = {
   ],
 };
 
-export default function CourseDetailPage() {
+export default function CourseDetailPage({ params }: { params: { courseId: string } }) {
   const [expandedSections, setExpandedSections] = useState<number[]>([0]);
 
   const toggleSection = (index: number) => {
