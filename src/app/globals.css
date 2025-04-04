@@ -1,0 +1,198 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 215 13% 95%;
+    --foreground: 233 27% 36%;
+    --card: 215 13% 100%;
+    --card-foreground: 233 27% 36%;
+    --popover: 215 13% 100%;
+    --popover-foreground: 233 27% 36%;
+    --primary: 233 27% 36%;
+    --primary-foreground: 215 13% 95%;
+    --secondary: 229 50% 90%;
+    --secondary-foreground: 233 27% 36%;
+    --muted: 215 13% 90%;
+    --muted-foreground: 233 27% 45%;
+    --accent: 229 50% 77%;
+    --accent-foreground: 233 27% 36%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 215 13% 95%;
+    --border: 233 27% 85%;
+    --input: 233 27% 85%;
+    --ring: 233 27% 36%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 233 27% 10%;
+    --foreground: 251 67% 90%;
+    --card: 233 27% 15%;
+    --card-foreground: 251 67% 90%;
+    --popover: 233 27% 15%;
+    --popover-foreground: 251 67% 90%;
+    --primary: 233 43% 45%;
+    --primary-foreground: 251 67% 90%;
+    --secondary: 233 27% 20%;
+    --secondary-foreground: 251 67% 90%;
+    --muted: 233 27% 20%;
+    --muted-foreground: 251 67% 70%;
+    --accent: 233 43% 45%;
+    --accent-foreground: 251 67% 90%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 251 67% 90%;
+    --border: 233 27% 20%;
+    --input: 233 27% 20%;
+    --ring: 233 43% 45%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .course-card {
+    @apply overflow-hidden transition-all duration-300 hover:shadow-lg;
+  }
+
+  .course-card:hover .aspect-video {
+    @apply scale-105;
+  }
+
+  .aspect-video {
+    @apply transition-transform duration-300;
+  }
+}
+
+@layer utilities {
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+}
+
+@keyframes slide-in-from-left {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-from-right {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-from-top {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-from-bottom {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes zoom-in {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes zoom-out {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+}
+
+.animate-in {
+  animation: fade-in 0.2s ease-in-out;
+}
+
+.animate-out {
+  animation: fade-out 0.2s ease-in-out;
+}
+
+.slide-in-from-top {
+  animation: slide-in-from-top 0.2s ease-in-out;
+}
+
+.slide-in-from-bottom {
+  animation: slide-in-from-bottom 0.2s ease-in-out;
+}
+
+.slide-in-from-left {
+  animation: slide-in-from-left 0.2s ease-in-out;
+}
+
+.slide-in-from-right {
+  animation: slide-in-from-right 0.2s ease-in-out;
+}
+
+.zoom-in {
+  animation: zoom-in 0.2s ease-in-out;
+}
+
+.zoom-out {
+  animation: zoom-out 0.2s ease-in-out;
+} 

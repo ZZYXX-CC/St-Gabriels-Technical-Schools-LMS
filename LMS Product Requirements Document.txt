@@ -1,0 +1,228 @@
+﻿Product Requirements Document
+Product Name: St. Gabriel's Technical Schools LMS
+Version: 1.0
+1. Introduction
+* 1.1 Purpose:
+   * This document outlines the requirements for the St. Gabriel's Technical Schools Learning Management System (LMS), a web and mobile application designed to offer online courses as an alternative to traditional classroom settings and to facilitate the sale of specialized programs.
+* 1.2 Scope:
+   * This document covers the requirements for the initial launch of the LMS, including user authentication via Supabase, video content management and display (hosted on YouTube), core LMS features, and продажа specialized courses. It does not include advanced assignments and grading, discussion forums, live virtual classrooms, and gamification, which will be addressed in a future release.
+* 1.3 Goals:
+   * The goals of the LMS are to:
+      * Provide students with online access to educational content.
+      * Offer instructors a platform for course creation and management.
+      * Enable the school to expand its reach through the sale of specialized courses.
+      * Enhance the overall learning experience with modern features.
+      * Achieve X number of student registrations within the first six months of launch.
+      * Maintain an average student engagement rate of Y% per course.
+2. Target Audience
+* 2.1 User Demographics:
+   * The target users of the LMS include:
+      * Students enrolled in St. Gabriel's Technical Schools.
+      * External users interested in specialized courses.
+      * Instructors at St. Gabriel's Technical Schools.
+      * External experts brought in for specialized programs.
+      * Administrators at St. Gabriel's Technical Schools.
+* 2.2 User Needs:
+   * Students need to:
+      * Access educational content online.
+      * Engage with learning materials.
+      * Track their progress.
+      * Communicate with instructors (future).
+   * Instructors need to:
+      * Create and manage course content.
+      * Upload and organize learning materials.
+      * Assess student progress (basic quizzes initially, advanced assignments and grading in the future).
+      * Communicate with students (future).
+   * Administrators need to:
+      * Manage users and courses.
+      * Track sales and process payments.
+      * Generate reports on platform usage.
+3. Product Features
+* 3.1 User Authentication (Supabase):
+   * Description: Allows users to create accounts and log in to the application using Supabase for authentication.
+   * User Story:
+      * "As a new user, I want to create an account so that I can access personalized features and save my video preferences."
+      * "As a returning user, I want to log in quickly and securely to access my saved content."
+   * Acceptance Criteria:
+      * "The user can create an account using a valid email address and password (managed by Supabase)."
+      * "The user can log in to their account using their email address and password (managed by Supabase)."
+      * "The system shall integrate with Supabase's authentication service."
+      * "The system should handle account recovery (e.g., password reset) through Supabase."
+      * "The system should support secure storage of user data within Supabase."
+   * Priority: High
+   * Dependencies: None
+* 3.2 Video Content Display (YouTube):
+   * Description: Displays video content hosted on YouTube within the application.
+   * User Story: "As a user, I want to watch videos seamlessly within the application without being redirected to YouTube."
+   * Acceptance Criteria:
+      * "The system can embed YouTube videos using the YouTube API."
+      * "Videos play correctly within the application's interface."
+      * "The video player controls (play, pause, volume, etc.) function as expected."
+      * "The system should handle different video resolutions and aspect ratios."
+      * "Ensure that embedded videos adhere to YouTube's terms of service."
+   * Priority: High
+   * Dependencies: 3.1 User Authentication (if video access is tied to user accounts)
+* 3.3 Video Content Management (for content creators/admins):
+   * Description: Allows authorized users to manage video content.
+   * User Story: "As a content creator, I want to upload videos to YouTube and manage them through this application."
+   * Acceptance Criteria:
+      * "The system allows authorized users to upload video metadata (title, description, tags) that are associated with the video on YouTube."
+      * "The system allows authorized users to update video metadata."
+      * "The system allows authorized users to delete video metadata (Note: actual video deletion would be on YouTube)."
+      * "The system provides a user-friendly interface for managing videos."
+   * Priority: Medium
+   * Dependencies: 3.1 User Authentication
+* 3.4 Course Catalog and Display:
+   * Description: Allows students to browse and view available courses.
+   * User Story: "As a student, I want to easily find and view available courses."
+   * Acceptance Criteria:
+      * "The system displays a catalog of available courses."
+      * "Users can search for courses by title, description, and keywords."
+      * "Users can filter courses by category."
+      * "Course cards display relevant information (title, description, instructor, price)."
+   * Priority: High
+   * Dependencies: 3.1 User Authentication
+* 3.5 Course Page:
+   * Description: Displays detailed information about a selected course.
+   * User Story: "As a student, I want to view the details of a course before enrolling."
+   * Acceptance Criteria:
+      * "The system displays the course syllabus, modules, and lessons."
+      * "The system displays the course description, instructor information, and any prerequisites."
+      * "Users can access the course content (text, images, videos) from this page."
+      * "Users can enroll in the course from this page."
+   * Priority: High
+   * Dependencies: 3.4 Course Catalog and Display
+* 3.6 Lesson Page:
+   * Description: Displays the content of a specific lesson.
+   * User Story: "As a student, I want to access the learning materials for a lesson."
+   * Acceptance Criteria:
+      * "The system displays lesson content, including text, images, and embedded videos."
+      * "The system supports different types of lesson content (text, image, video)."
+      * "Users can navigate between lessons within a course."
+      * "The system tracks lesson completion."
+   * Priority: High
+   * Dependencies: 3.5 Course Page
+* 3.7 Quiz Interface:
+   * Description: Allows students to take quizzes.
+   * User Story: "As a student, I want to take quizzes to assess my understanding of the course material."
+   * Acceptance Criteria:
+      * "The system presents quiz questions to the student."
+      * "The system supports multiple-choice questions." (Future: true/false, other types)
+      * "The system records student answers."
+      * "The system provides feedback to the student (immediate or after quiz submission)." (Future: explanations for incorrect answers)
+      * "The system calculates and displays the student's score."
+   * Priority: High
+   * Dependencies: 3.6 Lesson Page
+* 3.8 Student Dashboard:
+   * Description: Provides students with a personalized view of their enrolled courses and progress.
+   * User Story: "As a student, I want to access my enrolled courses and track my progress."
+   * Acceptance Criteria:
+      * "The system displays a list of courses the student is enrolled in."
+      * "The system displays the student's progress in each course."
+      * "The system provides access to course materials and assessments."
+   * Priority: High
+   * Dependencies: 3.1 User Authentication, 3.6 Lesson Page
+* 3.9 Instructor Dashboard (Simplified):
+   * Description: Provides instructors with a simplified view of their created courses and student enrollment.
+   * User Story: "As an instructor, I want to view my courses and see basic information about student enrollment."
+   * Acceptance Criteria:
+      * "The system displays a list of courses created by the instructor."
+      * "The system displays the number of students enrolled in each course."
+      * "Instructors can access and manage their course content."
+   * Priority: Medium
+   * Dependencies: 3.1 User Authentication, 3.3 Video Content Management
+* 3.10 Admin Dashboard (Simplified):
+   * Description: Provides administrators with a simplified overview of key platform statistics.
+   * User Story: "As an administrator, I want to view key platform statistics."
+   * Acceptance Criteria:
+      * "The system displays the total number of users."
+      * "The system displays the number of active courses."
+      * "The system displays sales figures."
+      * "The system allows administrators to manage users and courses." (Future: detailed user management, course approval)
+   * Priority: Medium
+   * Dependencies: 3.1 User Authentication
+* 3.11 Payment Integration Interface:
+   * Description: Handles the display of payment options and the initiation of the checkout process for paid courses.
+   * User Story: "As a student, I want to pay for specialized courses." "As an administrator, I want to manage payment transactions."
+   * Acceptance Criteria:
+      * "The system displays available payment options (e.g., Paystack, Flutterwave)."
+      * "The system initiates the payment process through the selected payment gateway."
+      * "The system displays a confirmation message upon successful payment."
+      * "The system handles failed payment attempts and displays an error message."
+      * "The system securely transmits payment information."
+   * Priority: High
+   * Dependencies: 3.1 User Authentication
+* 3.12 User Profile:
+   * Description: Allows users to view and manage their personal information.
+   * User Story: "As a user, I want to view and manage my profile information."
+   * Acceptance Criteria:
+      * "The system displays the user's profile information (name, email, etc.)."
+      * "Users can update their profile information."
+      * "Users can change their password."
+   * Priority: High
+   * Dependencies: 3.1 User Authentication
+4. User Interface (UI) and User Experience (UX)
+* 4.1 UI Requirements:
+   * Use provided React UI kit and adapt the necessary components to fit our school’s content and purposes 
+* 4.2 UX Requirements:
+      * Usability: Easy to navigate and use for students and instructors.
+      * Navigation: Intuitive navigation between courses, lessons, and profile.
+      * Information Architecture: Well-organized course content and platform information.
+      * Error Handling: Clear and informative error messages.
+      * Performance: Fast loading times and responsive interactions.
+      * User Flow Diagrams: Detailed user flow diagrams to be created.
+      * Seamless Integration: Ensure a seamless experience when embedding and displaying YouTube content.
+5. Technical Requirements
+* 5.1 Platform and Compatibility:
+   * The LMS will be accessible on:
+      * Web browsers (latest versions of Chrome, Firefox, Safari, Edge).
+      * iOS (minimum version [TBD]).
+      * Android (minimum version [TBD]).
+* 5.2 Performance Requirements:
+   *       * Load times: Pages should load in under 3 seconds.
+   *       * Response times: System should respond to user actions within 1 second.
+   *       * Video playback performance: Smooth streaming with minimal buffering.
+   *       * Scalability: The system should be able to handle [TBD] concurrent users.
+* 5.3 Security Requirements:
+   *       * Secure user authentication and authorization (handled by Supabase).
+   *       * Data encryption (in transit and at rest).
+   *       * Vulnerability testing.
+   *       * Compliance with relevant regulations (e.g., GDPR, if applicable).
+   *       * YouTube API Key Security: Securely store and manage YouTube API keys.
+* 5.4 Data Storage:
+   *       * User data, course data, and enrollment data will be stored in a Supabase Postgres database.
+   * * Data volume and retention policies to be defined.
+* 5.5 API Integrations:
+   *       * YouTube API: For embedding videos, searching videos, and managing video metadata.
+   *       * Supabase API: For user authentication, data storage, and real-time functionality.
+   * * Payment Gateway API (e.g., Paystack, Flutterwave).
+* 5.6 Technology Stack:
+   *       * Frontend: React Native Expo.
+   *       * Backend: [To be determined - Node.js, Python/Django, PHP/Laravel].
+   *       * Database: Supabase Postgres.
+   * * Authentication: Supabase.
+   * * Video Hosting: YouTube.
+6. Constraints
+* 6.1 Technology:
+   * YouTube API usage limits and quotas.
+   * Supabase free pricing limitations.
+7. Assumptions
+* "It is assumed that users will have a basic understanding of using online video platforms."
+* "It is assumed that the YouTube API will be available and functional."
+* "Sufficient bandwidth for video streaming will be available."
+* "Supabase services will be available and performant."
+8. Release Criteria
+* All high-priority features are implemented and tested.
+* All critical bugs are resolved.
+* Performance and security requirements are met.
+* User documentation is complete.
+* Successful completion of user acceptance testing.
+* Successful integration with YouTube and Supabase.
+9. Future Considerations
+* Advanced quiz types.
+* Assignment submission workflows.
+* Discussion forums.
+* Gamification elements.
+* User comments on videos (if supported by YouTube API and stored in Supabase).
+* Video recommendations.
+* Integration with other social media platforms.
